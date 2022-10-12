@@ -33,3 +33,4 @@ production:
   database: psql_test_production
   username: sqlite_to_psql
   password: <%= ENV["SQLITE_TO_PSQL_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
