@@ -1,0 +1,35 @@
+# default: &default
+#   adapter: sqlite3
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   timeout: 5000
+
+# development:
+#   <<: *default
+#   database: db/development.sqlite3
+
+# test:
+#   <<: *default
+#   database: db/test.sqlite3
+
+# production:
+#   <<: *default
+#   database: db/production.sqlite3
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: sqlite_to_psql_development
+
+test:
+  <<: *default
+  database: sqlite_to_psql_test
+
+production:
+  <<: *default
+  database: psql_test_production
+  username: sqlite_to_psql
+  password: <%= ENV["SQLITE_TO_PSQL_DATABASE_PASSWORD"] %>
